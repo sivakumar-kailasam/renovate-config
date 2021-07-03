@@ -14,16 +14,6 @@
         ":dependencyDashboard"
     ],
     "ignoreUnstable": true,
-    "lockFileMaintenance": {
-        "enabled": true,
-        "schedule": [
-            "after 2am and before 4am on Saturday"
-        ],
-        "prPriority": 1,
-        "labels": [
-            "automerge-candidate"
-        ]
-    },
     "packageRules": [
         {
             "matchPackagePatterns": [
