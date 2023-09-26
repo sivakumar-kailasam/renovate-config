@@ -1,183 +1,35 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "description": "Default base configuration for all sK's projects.",
-    "dependencyDashboardAutoclose": true,
-    "extends": [
-        ":semanticPrefixFixDepsChoreOthers",
-        ":ignoreModulesAndTests",
-        ":disableRateLimiting",
-        ":automergeDisabled",
-        "group:monorepos",
-        "group:recommended",
-        "helpers:disableTypesNodeMajor",
-        "schedule:nonOfficeHours",
-        ":dependencyDashboard"
-    ],
-    "ignoreUnstable": true,
-    "packageRules": [
-        {
-            "matchPackagePatterns": [
-                "@types/"
-            ],
-            "enabled": false
-        },
-        {
-            "matchDepTypes": [
-                "dependencies"
-            ],
-            "matchUpdateTypes": [
-                "major"
-            ],
-            "stabilityDays": 7
-        },
-        {
-            "matchDepTypes": [
-                "dependencies"
-            ],
-            "matchUpdateTypes": [
-                "minor"
-            ],
-            "stabilityDays": 2
-        },
-        {
-            "matchDepTypes": [
-                "dependencies"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "stabilityDays": 2
-        },
-        {
-            "groupName": "presets",
-            "matchUpdateTypes": [
-                "minor",
-                "patch"
-            ],
-            "matchDepTypes": [
-                "devDependencies"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true,
-            "matchPackagePatterns": [
-                "commitlint-config$",
-                "eslint-config$",
-                "mrm-preset$",
-                "ts-config$"
-            ]
-        },
-        {
-            "groupName": "jest",
-            "matchPackageNames": [
-                "@types/jest",
-                "babel-jest",
-                "ts-jest",
-                "expect"
-            ],
-            "matchPackagePrefixes": [
-                "jest"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true
-        },
-        {
-            "groupName": "common dev libraries",
-            "matchUpdateTypes": [
-                "minor",
-                "patch"
-            ],
-            "matchDepTypes": [
-                "devDependencies"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true,
-            "matchPackageNames": [
-                "glob",
-                "husky",
-                "lerna",
-                "npm-run-all",
-                "renovate",
-                "rimraf",
-                "ts-node",
-                "cz-conventional-changelog",
-                "esbuild",
-                "fs-extra",
-                "nodemon",
-                "zod",
-                "@ltd/j-toml",
-                "pkg-dir"
-            ]
-        },
-        {
-            "groupName": "linters",
-            "extends": [
-                "packages:linters"
-            ],
-            "matchPackageNames": [
-                "@babel/eslint-parser",
-                "@commitlint/*",
-                "@typescript-eslint/*",
-                "lint-staged",
-                "prettier-package-json",
-                "prettier"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true
-        },
-        {
-            "groupName": "React packages",
-            "matchPackageNames": [
-                "react",
-                "@types/react",
-                "react-dom",
-                "@types/react-dom",
-                "react-test-renderer",
-                "@types/react-test-renderer"
-            ]
-        },
-        {
-            "groupName": "Babel packages",
-            "matchUpdateTypes": [
-                "minor",
-                "patch"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true,
-            "matchPackageNames": [
-                "@babel/core"
-            ]
-        },
-        {
-            "groupName": "Typescript packages",
-            "matchUpdateTypes": [
-                "minor",
-                "patch"
-            ],
-            "matchPackageNames": [
-                "typescript",
-                "typedoc"
-            ],
-            "labels": [
-                "automerge-candidate"
-            ],
-            "automerge": true
-        }
-    ],
-    "prCreation": "not-pending",
-    "rangeStrategy": "auto",
-    "rebaseWhen": "behind-base-branch",
-    "semanticCommits": "auto",
-    "separateMajorMinor": true,
-    "separateMinorPatch": true,
-    "updateNotScheduled": true
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Default base configuration for all sK's projects.",
+  "extends": [
+    ":automergeDisabled",
+    ":dependencyDashboard",
+    ":disableRateLimiting",
+    ":ignoreModulesAndTests",
+    ":pinVersions",
+    ":semanticPrefixFixDepsChoreOthers",
+    "config:base",
+    "group:allNonMajor",
+    "group:definitelyTyped",
+    "group:linters",
+    "group:monorepos",
+    "group:nodeJs",
+    "group:recommended",
+    "helpers:disableTypesNodeMajor",
+    "schedule:nonOfficeHours"
+  ],
+  "ignoreUnstable": true,
+  "labels": ["dependency-updates"],
+  "assignees": ["@joinassembly/frontend-dependency-owners"],
+  "ignoreDeps": ["jest"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["@types/"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    }
+  ]
 }
